@@ -1,0 +1,51 @@
+swagger: "2.0"
+info:
+  title: Anagram
+  description: Поиск анаграмм в словаре
+  version: 1.0.0
+host: localhost
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /load:
+    post:
+      summary: Загрузка списка слов в словарь
+      operationId: LoadDictionary
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/WordList"
+      responses:
+        200:
+          description: Словарь загружен
+        500:
+          description: Ошибка сервиса
+  /get:
+    get:
+      summary: Загрузка списка слов в словарь
+      operationId: SearchAnagrams
+      parameters:
+        - name: word
+          in: query
+          description: Слово, по которому необходимо найти анаграммы
+          required: true
+          type: string
+      responses:
+        200:
+          description: Список слов анаграмм
+          schema:
+            $ref: "#/definitions/WordList"
+
+definitions:
+  WordList:
+    description: Список слов
+    type: array
+    items:
+      type: string
+
