@@ -1,12 +1,11 @@
 package app
 
 import (
+	"context"
 	"log"
 	"sort"
 	"strings"
 	"sync"
-
-	"golang.org/x/net/context"
 )
 
 // AnagramFinder интерфейс для взаимодействия со словарем для поиска анаграмм.

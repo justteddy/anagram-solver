@@ -2,15 +2,15 @@ run: build
 	@echo "Running anagram-solver..."
 	@${GOPATH}/bin/anagram-solver
 
-build: generate
+build: generate dep
 	@echo "Building application..."
 	@CGO_ENABLED=0 go install -a
 
-generate: clean-generated go-swagger generate-server
+dep:
+	@echo "Resolving dependencies..."
+	@go mod tidy
 
-go-swagger:
-	@echo "Installing Go-Swagger code generator..."
-	@go get -u github.com/go-swagger/go-swagger/cmd/swagger
+generate: clean-generated generate-server
 
 generate-server:
 	@echo "Generating server..."
